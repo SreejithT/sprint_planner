@@ -1,0 +1,23 @@
+<div class="page">
+  <form [formGroup]="storyForm">
+    <div>
+      <label class="d-block" for="story-name">Story Name: </label>
+      <input id="story-name" type="text" formControlName="name" />
+      @if(!storyForm.value?.name && submitted) {
+      <div class="error-line">This field is required</div>
+      }
+    </div>
+
+    <div class="form-block">
+      <label class="d-block" for="story-point">Story Point: </label>
+      <input id="story-point" type="number" formControlName="point" />
+      @if(!storyForm.value?.point && submitted) {
+      <div class="error-line">This field is required</div>
+      }
+    </div>
+
+    <button type="button" class="story-btn" (click)="addStory()">
+      Add Story
+    </button>
+  </form>
+</div>

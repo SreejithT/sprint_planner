@@ -1,0 +1,20 @@
+.sprint-container {
+  padding: 10px;
+}
+
+.nav-link {
+  color: black;
+
+  &:hover {
+    color: #115caa;
+  }
+}
+
+.active {
+  color: #00008b;
+  font-weight: 500;
+}
+
+.first-tab {
+  padding-left: 0;
+}

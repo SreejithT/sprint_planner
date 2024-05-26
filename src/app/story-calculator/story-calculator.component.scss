@@ -1,0 +1,33 @@
+.story-btn {
+  margin-top: 10px;
+  background: transparent;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 14px;
+  display: block;
+
+  &:disabled {
+    border: 1px solid lightgrey;
+  }
+}
+
+.error-line {
+  color: red;
+  font-size: 12px;
+}
+
+.side-heading {
+  margin-top: 35px;
+}
+
+.no-data {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  min-height: 100px;
+  font-size: 14px;
+}
+
+.table {
+  width: max-content;
+}
