@@ -11,7 +11,7 @@
     </button>
 
     <h6 class="side-heading">Selected Stories</h6>
-    @if(!selectedStories || selectedStories.length === 0) {
+    @if(!_story.selectedStories || _story.selectedStories.length === 0) {
     <div class="no-data">No data available</div>
     } @else() {
     <table class="table">
@@ -23,7 +23,7 @@
         </tr>
       </thead>
       <tbody>
-        @for(story of selectedStories; track story; let index = $index) {
+        @for(story of _story.selectedStories; track story; let index = $index) {
         <tr>
           <th scope="row">{{ index + 1 }}</th>
           <td>{{ story?.name }}</td>
@@ -35,7 +35,7 @@
     }
 
     <button
-      [disabled]="selectedStories.length === 0"
+      [disabled]="_story.selectedStories.length === 0"
       type="button"
       class="story-btn"
       (click)="clearSelectedStories()"
@@ -44,7 +44,7 @@
     </button>
 
     <button
-      [disabled]="stories.length === 0"
+      [disabled]="_story.stories.length === 0"
       type="button"
       class="story-btn"
       (click)="clearAll()"

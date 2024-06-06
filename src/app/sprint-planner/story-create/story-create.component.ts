@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { SprintPlannerService } from '../sprint-planner.service';
 
 @Component({
   selector: 'app-story-create',
@@ -13,20 +14,14 @@ import {
   templateUrl: './story-create.component.html',
   styleUrl: './story-create.component.scss',
 })
-export class StoryCreateComponent implements OnInit {
-  stories: { name: string; point: number }[] = [];
+export class StoryCreateComponent {
   storyForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
     point: new FormControl('', Validators.required),
   });
   submitted: boolean = false;
 
-  ngOnInit(): void {
-    const data: any = localStorage.getItem('stories');
-    if (data) {
-      this.stories = JSON.parse(data);
-    }
-  }
+  constructor(private _story: SprintPlannerService) {}
 
   // Function to add story. Checks if the form is valid before saving. Also checks for duplicate entries. Saves in local storage
   addStory() {
@@ -34,19 +29,18 @@ export class StoryCreateComponent implements OnInit {
       this.submitted = true;
     } else {
       this.submitted = false;
-      const index = this.stories?.findIndex(
+      const index = this._story.stories?.findIndex(
         (story) =>
           story?.name?.toLowerCase() ===
           this.storyForm.value?.name?.toLowerCase()
       );
       if (index === -1) {
-        this.stories?.push(this.storyForm.value);
+        this._story.stories?.push(this.storyForm.value);
         alert('Story has been added.');
         this.storyForm.reset();
       } else {
         alert('A story with the same name already exists.');
       }
-      localStorage.setItem('stories', JSON.stringify(this.stories));
     }
   }
 }
